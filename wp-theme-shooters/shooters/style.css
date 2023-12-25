@@ -51,11 +51,11 @@ Text Domain: worldstar
 /*--------------------------------------------------------------
 # 1.0 - Normalize
 --------------------------------------------------------------*/
-
 :root {
   --blue: rgb(54,98,130);
   --orange: rgb(233,138,6);
   --light-orange: rgb(239,163,66);
+  --light-blue: rgb(67,110,137);
   --header-font: 'Mikodacs', Arial;
   --text-font: 'Myriad Pro', Arial;
 }
@@ -779,18 +779,25 @@ textarea {
 	display: none;
 	margin: 0;
 	padding: 0;
-	background: var(--blue);
 	list-style-position: outside;
 	list-style-type: none;
+ 
+ 
+
+	background: var(--light-blue);	
+	/*background-color: var(--orange);*/
 }
 .main-navigation-menu ul li {
 	position: relative;
 	float: none;
+	/*border: 1px solid white;*/
+	/*border-bottom: 1px solid white;*/
 }
 .main-navigation-menu ul a {
 	padding: 0.75em 1em;
 	min-width: 18rem;
-	border-bottom: 1px solid rgba(255,255,255,0.1);
+	/*border-bottom: 1px solid white;*/
+	border-bottom: 1px solid rgba(255,255,255,0.2);
 	letter-spacing: 1.6px;
 	font-size: 1.2rem;
 	-webkit-transition: none;
@@ -1203,8 +1210,8 @@ textarea {
 	vertical-align: top;
 }
 .entry-content {
-	font-size: 16px;
-	font-size: 1rem;
+	/*font-size: 16px;
+	font-size: 1rem;*/
 }
 .sticky {}
 /* Read more Link */
@@ -1979,9 +1986,10 @@ object {
 		border-radius: 0;
 		background: var(--blue);
 		text-align: left;
-		font-size: 1.2rem;
+		font-size: 1.6rem;
 		letter-spacing: 1.5px;
 		font-family: var(--header-font);
+		line-height: 2.1rem;
 	}
 	.main-navigation-toggle:hover,
 	.main-navigation-toggle:active {
@@ -2433,3 +2441,5 @@ width:45px;float:left;margin-right:5px;
 span.wpcf7-list-item{
 display: block;
 }
+
+

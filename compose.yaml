@@ -7,7 +7,7 @@ services:
       MYSQL_DATABASE: wordpress
       MYSQL_ROOT_PASSWORD: 1234
     volumes:
-      - ./sql/001_init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./wp-plugin-handball/sql/001_init.sql:/docker-entrypoint-initdb.d/init.sql
 
   wordpress:
     image: wordpress:6-php8.2-apache
