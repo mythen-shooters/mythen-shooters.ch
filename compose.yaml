@@ -1,5 +1,5 @@
 services:
-  mariadb:
+  mariadb:    
     image: mariadb
     ports:
       - 3306:3306
@@ -14,9 +14,9 @@ services:
     ports:
       - 80:80
     volumes:
-      - /home/alex/git/wp-theme-hcg/shooters:/var/www/html/wp-content/themes/shooters
-      - .:/var/www/html/wp-content/plugins/handball
-      - /home/alex/git/hc-goldau.ch:/var/www/html
+      - ./wp-theme-shooters/shooters:/var/www/html/wp-content/themes/shooters
+      - ./wp-plugin-handball:/var/www/html/wp-content/plugins/handball
+      - ./data:/var/www/html
     environment:
       WORDPRESS_DB_HOST: mariadb
       WORDPRESS_DB_USER: root
