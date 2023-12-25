@@ -1,9 +1,3 @@
-# Handball Plugin for SHV
+# mythen-shooers.ch
 
-This plugin imports all teams and matches over the SHV rest api and keep them up to date.
-
-## Deploy on production
-
-Execute `./dist.sh` and upload `handball.zip` via Plugin Manager to Wordpress.
-
-Hint: The name of the zip name is the identifier for the plugin.
+Plugin and Theme for mythen-shooters.ch.
