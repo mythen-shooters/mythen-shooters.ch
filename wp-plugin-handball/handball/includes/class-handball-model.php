@@ -657,17 +657,7 @@ class Game
     public function getLeagueShort()
     {
         return $this->leagueShort;
-    }
-    
-    public function setRound($round)
-    {
-        $this->round = $round;
-    }
-    
-    public function getRound()
-    {
-        return $this->round;
-    }
+    }    
     
     public function setGameStatus($gameStatus)
     {
@@ -797,7 +787,7 @@ class Game
     public function isHomeGame(): bool
     {
         if ($this->isAnimationGame()) {
-            return $this->isGameInGoldau();
+            return $this->isGameAtHome() && !self::stringContains(strtolower($this->getVenue()), 'muotathal');
         } else {
             return $this->isTeamAOurTeam() && $this->isGameAtHome();
         }
@@ -821,7 +811,9 @@ class Game
     private function isTeamAOurTeam(): bool {
         return
         self::stringContains(strtolower($this->getTeamAName()), 'goldau') ||
-        self::stringContains(strtolower($this->getTeamAName()), 'shooters');
+        self::stringContains(strtolower($this->getTeamAName()), 'brunnen') ||
+        self::stringContains(strtolower($this->getTeamAName()), 'shooters') ||
+        self::stringContains(strtolower($this->getTeamAName()), 'sg ktv muotathal');
     }
     
     private function isGameAtHome(): bool {
@@ -829,7 +821,8 @@ class Game
         self::stringContains(strtolower($this->getVenue()), 'arth') ||
         self::stringContains(strtolower($this->getVenue()), 'goldau') ||
         self::stringContains(strtolower($this->getVenue()), 'schwyz') ||
-        self::stringContains(strtolower($this->getVenue()), 'brunnen');
+        self::stringContains(strtolower($this->getVenue()), 'brunnen') ||
+        self::stringContains(strtolower($this->getVenue()), 'muotathal');
     }
     
     public function getOpponentTeamName() {
@@ -852,9 +845,11 @@ class Game
     }
     
     public function getScore() {
-        return $this->getTeamAScoreFT() . ':' . $this->getTeamBScoreFT()
-        . ' (' . $this->getTeamAScoreHT() . ':' . $this->getTeamBScoreHT() . ')'
-            ;
+        $result = $this->getTeamAScoreFT() . ':' . $this->getTeamBScoreFT();
+        if ($this->getTeamAScoreHT() == 0 && $this->getTeamBScoreHT() == 0) {
+          return $result;
+        }
+        return $result . ' (' . $this->getTeamAScoreHT() . ':' . $this->getTeamBScoreHT() . ')';
     }
 
     public function getLivetickerUrl() {
@@ -922,7 +917,7 @@ class WpPostHelper {
         }
         ob_start();
         ob_end_clean();
-        $output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+        preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
         return $matches[1][0] ?? '';
     }
     

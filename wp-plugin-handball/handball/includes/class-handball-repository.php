@@ -287,7 +287,6 @@ class HandballMatchRepository extends Repository
             'venue_zip' => $match->getVenueZip(),
             'league_long' => $match->getLeagueLong(),
             'league_short' => $match->getLeagueShort(),
-            'round' => $match->getRound(),
             'game_status' => $match->getGameStatus(),
             'team_a_score_ht' => $match->getTeamAScoreHT(),
             'team_a_score_ft' => $match->getTeamAScoreFT(),
@@ -304,7 +303,6 @@ class HandballMatchRepository extends Repository
             '%d',
             '%d',
             '%d',
-            '%s',
             '%s',
             '%s',
             '%s',
@@ -346,20 +344,20 @@ class HandballMatchRepository extends Repository
     
     public function findMatchesNextWeek(): array {
         $query = 'SELECT * FROM handball_match
-            WHERE game_datetime < (DATE_ADD(NOW(), INTERVAL 1 WEEK)) AND game_datetime > (NOW())
+            WHERE game_datetime < (DATE_ADD(NOW(), INTERVAL 3 WEEK)) AND game_datetime > (NOW())
             ORDER BY game_datetime ASC';
         return $this->findMultiple($query);
     }
     
     public function findMatchesLastWeek(): array {
         $query = 'SELECT * FROM handball_match
-            WHERE game_datetime > (DATE_SUB(NOW(), INTERVAL 1 WEEK)) AND game_datetime < (NOW())
+            WHERE game_datetime > (DATE_SUB(NOW(), INTERVAL 3 WEEK)) AND game_datetime < (NOW())
             ORDER BY game_datetime ASC';
         return $this->findMultiple($query);
     }
 
-    public function findNextMatch(string $league): ?Game {
-        $query = $this->wpdb->prepare('SELECT * FROM handball_match WHERE game_datetime > (NOW()) AND league_short = %s ORDER BY game_datetime ASC', $league);
+    public function findNextMatch(int $teamId): ?Game {
+        $query = $this->wpdb->prepare('SELECT * FROM handball_match WHERE game_datetime > (NOW()) AND fk_team_id = %d ORDER BY game_datetime ASC', $teamId);
         $games = $this->findMultiple($query);
         if (empty($games)) {
             return null;
@@ -367,8 +365,8 @@ class HandballMatchRepository extends Repository
         return $games[0];
     }
 
-    public function findLastMatch(string $league): ?Game {
-        $query = $this->wpdb->prepare('SELECT * FROM handball_match WHERE game_datetime < (NOW()) AND league_short = %s ORDER BY game_datetime DESC', $league);
+    public function findLastMatch(int $teamId): ?Game {
+        $query = $this->wpdb->prepare('SELECT * FROM handball_match WHERE game_datetime < (NOW()) AND fk_team_id = %d ORDER BY game_datetime DESC', $teamId);
         $games = $this->findMultiple($query);
         if (empty($games)) {
             return null;
@@ -406,7 +404,6 @@ class HandballMatchRepository extends Repository
         $match->setTeamBScoreHT($row->team_b_score_ht);
         $match->setSpectators($row->spectators);
         $match->setRoundNr($row->round_nr);
-        $match->setRound($row->round);
         $match->setGameTypeShort($row->game_type_short);
         $match->setGameTypeLong($row->game_type_short);
         $match->setGameStatus($row->game_status);

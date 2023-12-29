@@ -7,7 +7,7 @@ services:
       MYSQL_DATABASE: wordpress
       MYSQL_ROOT_PASSWORD: 1234
     volumes:
-      - ./wp-plugin-handball/sql/001_init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./wp-plugin-handball/handball/sql/001_init.sql:/docker-entrypoint-initdb.d/init.sql
 
   wordpress:
     image: wordpress:6-php8.2-apache
@@ -15,7 +15,7 @@ services:
       - 80:80
     volumes:
       - ./wp-theme-shooters/shooters:/var/www/html/wp-content/themes/shooters
-      - ./wp-plugin-handball:/var/www/html/wp-content/plugins/handball
+      - ./wp-plugin-handball/handball:/var/www/html/wp-content/plugins/handball
       - ./data:/var/www/html
     environment:
       WORDPRESS_DB_HOST: mariadb

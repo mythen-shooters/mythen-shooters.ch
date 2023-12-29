@@ -147,25 +147,3 @@
 .tzwb-tabbed-content .tzwb-tabcontent ul li .tzwb-entry-meta {
 	margin: 0.2em 0 0.6em;
 }
-/*--------------------------------------------------------------
-# Social Icons Widget
----------------------------------------------------------------- */
-.tzwb-social-icons .social-icons-menu {
-	list-style: none;
-	line-height: 1;
-}
-.tzwb-social-icons .social-icons-menu li {
-	margin: 0 3px 3px 0;
-}
-.tzwb-social-icons .social-icons-menu li a {
-	padding: 0.8em;
-	border-radius: 0.3em;
-	background: #33bbdd;
-}
-.tzwb-social-icons .social-icons-menu li a:before {
-	font-size: 22px;
-}
-.tzwb-social-icons .social-icons-menu li a:hover {
-	background: #222;
-	text-decoration: none;
-}

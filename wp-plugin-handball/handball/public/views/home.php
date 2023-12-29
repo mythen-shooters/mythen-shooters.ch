@@ -80,7 +80,10 @@ get_header();
 			}
 			?>
 
-				<div class="content-column clearfix" >
+
+
+
+				<div class="content-column clearfix news-ticker-desktop" style="padding-top:3px;">
 					<?
 					$i = 0;
 					$display = 'block';
@@ -98,8 +101,7 @@ get_header();
 					}
 					?>
 
-					<div style="background-color:var(--orange);height:8px;"></div>
-					<div style="background-color:var(--blue);height:8px;"></div>
+					<div style="background-color:var(--orange);height:4px;margin-top:12px;margin-bottom:4px;"></div>
 
 					<style>
 						.news-card {
@@ -168,137 +170,130 @@ get_header();
 
 
 
+				<div class="content-column clearfix news-ticker-mobile" style="padding-top:3px;">
+					<?
+						foreach($posts as $post) {
+							$imgUrl = WpPostHelper::getFirstImageUrlInPost($post);
+							$excerpt = wp_kses_post(wp_trim_words($post->post_content, 15));							
+
+							$subText = '';
+							$gameId = get_post_custom_values('handball_game_id', $post->ID);
+							$reportType = get_post_custom_values('handball_game_report_type', $post->ID);
+							if (!empty($gameId)) {
+								$games = new HandballMatchRepository();
+								$game = $games->findById($gameId);
+								if ($game != null) {
+									// why is this an array?
+									if ($reportType[0] == 'report') {
+										$subText = $game->getLeagueLong() . '<br/> ' . $game->getEncounter() . ' ' . $game->getScore();
+									} else {
+										// preview
+										$subText = $game->getLeagueLong() . '<br/> ' . $game->getEncounter();
+									}
+								}
+							}
+					?>
+						<a style="display:block;cursor:pointer;color:white;margin-bottom:8px;background-color:var(--light-blue);" class="news-mobile-card" href='<?= get_permalink($post) ?>'>
+								<img src="<?= $imgUrl ?>" />
+							
+							<div style="padding:8px;">
+							<p style='margin:0px;font-size:18px;font-weight:bold;'>
+							  <?= esc_attr($post->post_title) ?>
+							</p>
+
+							<p style='margin:0px;font-size:14px;'>
+							<?= $subText ?>
+							</p>
+
+							<p style='margin:0px;font-size:14px;overflow:hidden;display:none;'>
+							<?= esc_attr($excerpt) ?>
+							</p>
+							</div>
+						</a>
+					<?
+						}
+					?>
+
+				</div>
+
 
 <div class="clearfix"></div>
 
-			<?php
-			require_once (WP_PLUGIN_DIR . '/handball/includes/class-handball-repository.php');
-			$repo = new HandballMatchRepository();
-			$upComingMatches = $repo->findMatchesNextWeek();
-			$pastMatches = $repo->findMatchesLastWeek();
+<?
+	require_once (WP_PLUGIN_DIR . '/handball/includes/class-handball-repository.php');
+	$repo = new HandballMatchRepository();			
+?>
+
+<div class="content-column" style="margin-top:15px">
+	
+	<?
+		$pastGames = $repo->findMatchesNextWeek();		
+	?>
+
+	<?
+		$homeGames = array_filter($pastGames, function ($match) {
+			return $match->isHomeGame();
+		});
+		if (!empty($homeGames)) {
 			?>
-
-			<div class="content-column" style="margin-top:15px">
-			   <div>
-    			<header class="page-header" style="margin-bottom:0px;">
-    				<h1 class="widget-title">Spielplan</h1>
-    			</header>
-    			<div class="entry-content clearfix" style="">
-					<style>
-						.gametable-cell {
-							border:0px solid black;
-							border-bottom: 1px solid white;
-							color:white;
-						}
-
-						.club-logo {
-							position:relative;
-							top: 4px;
-							margin-right:3px;
-						}
-						.responsive-table-container {
-							width: 100%;
-							overflow-y: auto;
-							overflow: auto;
-							margin: 0 0 1em;
-						}
-					</style>
-					<div class="responsive-table-container">
-					<table style="margin-bottom:0px;">
-					<?php
-					   if (empty($upComingMatches)) {
-					       echo 'Keine Spiele in nächster Zeit.';
-					   }
-					   foreach ($upComingMatches as $match) {
-						   $previewUrl = $match->getPostPreviewUrl();
-						   ?>
-						    <tr style="">
-							  <td class="gametable-cell" style="width:120px"><? echo $match->getGameDateTimeFormattedShort() ?></td>	
-							  <td class="gametable-cell" style="width:90px"><? echo $match->getLeagueShort() ?></td>
-							  <td class="gametable-cell" style="width:400px;">
-								<?php
-								if (!empty($previewUrl)) {
-									echo "<a href='$previewUrl'>";
-								}
-								$imageA = $match->getTeamAImageUrl("20");
-								$imageB = $match->getTeamBImageUrl("20");
-								echo "<img class='club-logo' src='$imageA' />";
-								echo $match->getTeamAName();
-								echo ' - ';
-								echo "<img class='club-logo' src='$imageB' />";
-								echo $match->getTeamBName();
-								if (!empty($previewUrl)) {
-									echo "</a>";
-								}								
-								?>
-							  </td>
-							  <td style="width:137px;"  class="gametable-cell"><? echo $match->getVenueShort(); ?> </td>
-
-							  <td style="width:30px;padding:0px;text-align:center;margin:0px;"  class="gametable-cell">
-							   <a style="display:block;height:100%;marign:0px;background-color:var(--orange);padding:0px;" href="">	>
-							    </a>
-							   </td>
-					   		</tr>
-						   <?php
-
-					   }
-					   ?>
-					</table>
-					</div>
-    			</div>
-					</div>
+			<header class="page-header" style="margin-bottom:0px;margin-top:20px;">
+				<h1 class="widget-title" style="margin-bottom:5px;padding:0px;">Heimspiele</h1>
+			</header>
+			<div class="entry-content clearfix">
+			<?
+				$matches = $homeGames;
+				if (empty($matches)) {
+					echo 'Keine Heimspiele in nächster Zeit.';
+				} else {
+				  include dirname(__FILE__) . "/../templates/_gametable-upcoming.php";
+				}
+			?>
 			</div>
-			<div class="content-column"  style="margin-top:15px">
-    			<header class="page-header">
-    				<h1 class="widget-title">Resultate</h1>
-    			</header>
-    			<div class="entry-content clearfix">
-				<div class="responsive-table-container">
-					<table>
-					<?php
-					if (empty($pastMatches)) {
-					    echo 'Keine Spiele in letzter Zeit.';
-					}
-					foreach ($pastMatches as $match) {
-					       $showScore = true;
-					       $showPreviewLink = true;
-					       $showReportLink = true;
-					       $showLeague = false;
-					       $showEncounterWithLeague = true;
-					       $highlightHomeGame = false;
+			<?
+		}
+	?>
 
-						   ?>
-						   <tr>
-							 <td class="gametable-cell" style="width:120px;"><? echo $match->getLeagueShort() ?></td>
-							<td class="gametable-cell" style="width:400px;">
-							 <?
-								$imageA = $match->getTeamAImageUrl("20");
-								$imageB = $match->getTeamBImageUrl("20");
-								echo "<img class='club-logo' src='$imageA' />";
-								echo $match->getTeamAName();
-								echo ' - ';
-								echo "<img class='club-logo' src='$imageB' />";
-								echo $match->getTeamBName();
-							 ?>
-								</td>
-							<td class="gametable-cell" style="width:140px;"><? echo $match->getScore(); ?> </td>
-							
-							<td class="gametable-cell" style="width:110px;">
-								<a href="<? echo $match->getLivetickerUrl() ?>">Liveticker</a>
-							</td>
-							
-							 
-							</tr>
-						  <?php
-					   }
-					?>
-					</table>
-					</div>
-    			</div>
+	<?
+		$awayGames = array_filter($pastGames, function ($match) {
+			return !$match->isHomeGame();
+		});
+		if (!empty($awayGames)) {
+			?>
+			<header class="page-header" style="margin-bottom:0px;margin-top:20px;">
+				<h1 class="widget-title" style="margin-bottom:5px;padding:0px;">Auswärtsspiele</h1>
+			</header>
+			<div class="entry-content clearfix">
+			<?
+				$matches = $awayGames;
+				if (empty($matches)) {
+					echo 'Keine Auswärtsspiele in nächster Zeit.';
+				} else {
+				  include dirname(__FILE__) . "/../templates/_gametable-upcoming.php";
+				}
+			?>
 			</div>
+			<?
+		}
+	?>
 
-		</main><!-- #main -->
-	</section><!-- #primary -->
+	<header class="page-header" style="margin-top:20px;margin-bottom:0px;">
+		<h1 class="widget-title" style="margin-bottom:5px;padding:0px;">Resultate</h1>
+    </header>
+    <div class="entry-content clearfix">
+	<?
+		$matches = $repo->findMatchesLastWeek();
+		if (empty($matches)) {
+		    echo 'Keine Spiele in letzter Zeit.';
+		} else {
+			include dirname(__FILE__) . "/../templates/_gametable-played.php";
+		}
+	?>
+	</div>
+</div>
+
+
+</main><!-- #main -->
+</section><!-- #primary -->
 
 	<?php get_sidebar(); ?>
 

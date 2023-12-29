@@ -53,3 +53,8 @@ ALTER TABLE handball_match ADD COLUMN team_a_id INTEGER;
 ALTER TABLE handball_match ADD COLUMN team_b_id INTEGER;
 ALTER TABLE handball_match ADD COLUMN team_a_club_id INTEGER;
 ALTER TABLE handball_match ADD COLUMN team_b_club_id INTEGER;
+
+
+
+
+-- TODO Remove round (not round nr from game table)

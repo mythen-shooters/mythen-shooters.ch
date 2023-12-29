@@ -22,18 +22,3 @@ foreach ($groups as $group) {
       </div>
     </div>
   <? } ?>
-
-  <style>
-.responsive-table-container
-{
-	width: 100%;
-	overflow-y: auto;
-	_overflow: auto;
-	margin: 0 0 1em;
-}
-.td-ranking {
-    text-align:center;
-    width: 50px;
-	border: 0px solid black;
-}
-</style>

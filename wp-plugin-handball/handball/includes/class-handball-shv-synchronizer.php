@@ -32,15 +32,14 @@ class HandballShvSynchronizer
 
     public function start()
     {
-        if (! $this->validConfig()) {
-            return;
+        if (!$this->validConfig()) {
+          return;
         }
 
         $teamIds = $this->updateTeams($this->clubId);
-
         foreach ($teamIds as $teamId) {
-            $this->updateMatches($teamId);
-            $this->updateGroup($teamId);
+          $this->updateMatches($teamId);
+          $this->updateGroup($teamId);
         }
     }
 
@@ -72,13 +71,9 @@ class HandballShvSynchronizer
                 $team = new Team($responseTeam->teamId, $responseTeam->teamName, Saison::getCurrentSaisonBasedOnTime()->getValue());
             }
             $team->setTeamName($responseTeam->teamName);
-
-            $responseDetailTeam = $this->fetchBody($this->apiUrl . '/teams/' . $team->getTeamId());
-            $team->setLeagueLong($responseDetailTeam->leagueLong);
-            $team->setLeagueShort($responseDetailTeam->leagueShort);
-
+            $team->setLeagueLong($responseTeam->leagueLong);
+            $team->setLeagueShort($responseTeam->leagueShort);
             $this->teamRepo->saveTeam($team);
-
             if (!isset($teamIds[$responseTeam->teamId])) {
                 $teamIds[] = $responseTeam->teamId;
             }
@@ -123,7 +118,6 @@ class HandballShvSynchronizer
             $match->setLeagueLong($responseMatch->leagueLong);
             $match->setLeagueShort($responseMatch->leagueShort);
             $match->setGameStatus($responseMatch->gameStatus);
-            $match->setRound($responseMatch->round ?? null);
             $match->setRoundNr($responseMatch->roundNr);
             $match->setSpectators($responseMatch->spectators);
             $match->setTeamAScoreFT($responseMatch->teamAScoreFT);
@@ -144,6 +138,7 @@ class HandballShvSynchronizer
         $responseGroup = $this->fetchBody($this->apiUrl . '/teams/' . $teamId . '/group?status=planned');
 
         // Handball API Bug
+        // TODO what is this.
         if ($responseGroup->groupId == 0) {
             return;
         }

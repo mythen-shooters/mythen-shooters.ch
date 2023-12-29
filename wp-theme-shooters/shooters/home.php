@@ -1,9 +1,7 @@
 <?php
 get_header();
 $theme_options = worldstar_theme_options();
-if ( true === $theme_options['featured_blog'] ) :
-	get_template_part( 'template-parts/featured-content' );
-endif;
+
 ?>
 	<section id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
