@@ -71,39 +71,7 @@ function worldstar_theme_info_page() {
 					<img src="<?php echo get_template_directory_uri(); ?>/screenshot.jpg" />
 				</div>
 			</div>
-		</div>
-		<hr>
-		<div id="more-features">
-			<h3><?php esc_html_e( 'Get more features', 'worldstar' ); ?></h3>
-			<div class="columns-wrapper clearfix">
-				<div class="column column-half clearfix">
-					<div class="section">
-						<h4><?php esc_html_e( 'Pro Version Add-on', 'worldstar' ); ?></h4>
-						<p class="about">
-							<?php printf( esc_html__( 'Purchase the %s Pro Add-on and get additional features and advanced customization options.', 'worldstar' ), 'WorldStar' ); ?>
-						</p>
-						<p>
-							<a href="<?php echo esc_url( __( 'https://themezee.com/addons/worldstar-pro/', 'worldstar' ) . '?utm_source=theme-info&utm_medium=button&utm_campaign=worldstar&utm_content=pro-version' ); ?>" target="_blank" class="button button-secondary">
-								<?php printf( esc_html__( 'Learn more about %s Pro', 'worldstar' ), 'WorldStar' ); ?>
-							</a>
-						</p>
-					</div>
-				</div>
-				<div class="column column-half clearfix">
-					<div class="section">
-						<h4><?php esc_html_e( 'Recommended Plugins', 'worldstar' ); ?></h4>
-						<p class="about">
-							<?php esc_html_e( 'Extend the functionality of your WordPress website with our free and easy to use plugins.', 'worldstar' ); ?>
-						</p>
-						<p>
-							<a href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=search&type=author&s=themezee' ) ); ?>" class="button button-secondary">
-								<?php esc_html_e( 'Install Plugins', 'worldstar' ); ?>
-							</a>
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
+		</div>		
 		<hr>
 		<div id="theme-author">
 			<p><?php printf( esc_html__( '%1$s is proudly brought to you by %2$s. If you like this theme, %3$s :)', 'worldstar' ),
@@ -115,17 +83,3 @@ function worldstar_theme_info_page() {
 	</div>
 	<?php
 }
-/**
- * Enqueues CSS for Theme Info page
- *
- * @param int $hook Hook suffix for the current admin page.
- */
-function worldstar_theme_info_page_css( $hook ) {
-	// Load styles and scripts only on theme info page.
-	if ( 'appearance_page_worldstar' != $hook ) {
-		return;
-	}
-	// Embed theme info css style.
-	wp_enqueue_style( 'worldstar-theme-info-css', get_template_directory_uri() . '/css/theme-info.css' );
-}
-add_action( 'admin_enqueue_scripts', 'worldstar_theme_info_page_css' );

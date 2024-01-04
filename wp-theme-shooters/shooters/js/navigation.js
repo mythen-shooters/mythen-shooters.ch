@@ -1,97 +1,37 @@
-/**
-
- * Navigation Plugin
-
- * Includes responsiveMenu() function
-
- *
-
- * Copyright 2016 ThemeZee
-
- * Free to use under the GPLv2 and later license.
-
- * http://www.gnu.org/licenses/gpl-2.0.html
-
- *
-
- * Author: Thomas Weichselbaumer (themezee.com)
-
- *
-
- * @package WorldStar
-
- */
-
- 
-
 (function($) {
 
-
-
 	/**--------------------------------------------------------------
-
 	# Responsive Navigation for WordPress menus
-
 	--------------------------------------------------------------*/
-
 	$.fn.responsiveMenu = function( options ) {
 
-
-
 		if ( options === undefined ) {
-
 			options = {};
-
 		}
 
-
-
 		/* Set Defaults */
-
 		var defaults = {
-
 			menuClass: 'menu',
-
 			toggleClass: 'menu-toggle',
-
 			toggleText: '',
-
 			maxWidth: '60em'
-
 		};
 
-
-
 		/* Set Variables */
-
 		var vars = $.extend( {}, defaults, options ),
-
 			menuClass = vars.menuClass,
-
 			toggleID = ( vars.toggleID ) ? vars.toggleID : vars.toggleClass,
-
 			toggleClass = vars.toggleClass,
-
 			toggleText = vars.toggleText,
-
 			maxWidth = vars.maxWidth,
-
 			$this = $( this ),
-
 			$menu = $( '.' + menuClass );
 
 
-
 		/*********************
-
 		* Desktop Navigation *
-
 		**********************/
-
-
-
 		/* Set and reset dropdown animations based on screen size */
-
 		if ( typeof matchMedia == 'function' ) {
 
 			var mq = window.matchMedia( '(max-width: ' + maxWidth + ')' );
@@ -288,7 +228,7 @@
 
 			toggleClass: 'main-navigation-toggle',
 
-			toggleText: worldstar_menu_title,
+			toggleText: 'Menu',
 
 			maxWidth: '60em'
 

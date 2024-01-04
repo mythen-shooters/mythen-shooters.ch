@@ -11,7 +11,6 @@ get_header(); ?>
           <? the_title('<h1 class="entry-title">', '</h1>') ?>
         </header>
         <? the_content() ?>
-
         <?
         $time_string = sprintf('%3$s',
           esc_attr(get_the_time()),
@@ -19,12 +18,9 @@ get_header(); ?>
           esc_html(get_the_date())
         );
         ?>
-          <div style="font-size:0.8em;border-top: 1px solid white;padding-top:5px;">
-            <?= $time_string ?>, <?= esc_html(get_the_author()) ?>
-          </div>
-        <?
-
-          ?>
+        <div style="font-size:0.8em;border-top: 1px solid white;padding-top:5px;">
+          <?= $time_string ?>, <?= esc_html(get_the_author()) ?>
+        </div>
       </article>
     <?php endwhile; ?>
   </main>
@@ -46,11 +42,7 @@ get_header(); ?>
   $showEncounterWithLeague = false;
   ?>
 
-<!--
-<div style='text-align:center;border:5px solid var(--orange);border-radius:10px;font-size:18px;background-color:var(--blue);color:white;font-weight:bold;'>
-      -->
-
-  <div class="entry-content clearfix" style="text-align:center;border-bottom:0px solid #eee;margin-bottom:5px;padding-bottom:15px;border:5px solid var(--orange);border-radius:10px;">
+  <div class="entry-content clearfix" style="text-align:center;border-bottom:0px solid #eee;margin-bottom:5px;padding-bottom:10px;border:5px solid var(--orange);border-radius:10px;">
     <div style="background-color:var(--orange);text-align:left;">
       <h3 style="margin: 0px;padding:5px;"><?= $match->getLeagueLong() ?></h3>
     </div>
@@ -61,12 +53,11 @@ get_header(); ?>
       <img style="position:relative;left:15px;" src="<?= $match->getTeamBImageUrl(60) ?>" />
     </div>
 
-    <span style="font-size:20px;">
-      <?= $match->getEncounter() ?>
-    </span>
-
-    <br />
-
+    <div style="padding-left:5px;padding-right:5px;">
+      <span style="font-size:20px;">
+        <?= $match->getEncounter() ?>
+      </span>
+    </div>
     <?
     if (!$match->isPlayed()) {
       echo $match->getGameDateTimeFormattedShort();
@@ -76,9 +67,10 @@ get_header(); ?>
       echo $match->getScore();
     }
     ?>
-    <br />
+    <div style="border-top:0px solid var(--orange);margin-top:5px;">
+      <a href="<?= $match->getLivetickerUrl() ?>">Liveticker</a>
+    </div>
   </div>
-
 
   <?
   $teamId = $match->getTeamId();
@@ -86,7 +78,7 @@ get_header(); ?>
   ?>
 
   <?
-  $halle = $match->getVenue() . "+" . $match->getVenueAddress() . "+" . $match->getVenueZip() . "+" . $match->getVenueCity();
+    $halle = $match->getVenue() . "+" . $match->getVenueAddress() . "+" . $match->getVenueZip() . "+" . $match->getVenueCity();
   ?>
 
   <h3 style="margin-bottom:5px;">Halle</h3>

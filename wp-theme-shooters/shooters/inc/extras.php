@@ -51,46 +51,7 @@ function worldstar_body_classes( $classes ) {
 	return $classes;
 }
 add_filter( 'body_class', 'worldstar_body_classes' );
-/**
- * Hide Elements with CSS.
- *
- * @return void
- */
-function worldstar_hide_elements() {
-	// Get theme options from database.
-	$theme_options = worldstar_theme_options();
-	$elements = array();
-	// Hide Site Title?
-	if ( false === $theme_options['site_title'] ) {
-		$elements[] = '.site-title';
-	}
-	// Hide Site Description?
-	if ( false === $theme_options['site_description'] ) {
-		$elements[] = '.site-description';
-	}
-	// Hide Post Categories?
-	if ( false === $theme_options['meta_category'] ) {
-		$elements[] = '.type-post .entry-categories';
-	}
-	// Hide Post Tags?
-	if ( false === $theme_options['meta_tags'] ) {
-		$elements[] = '.type-post .entry-footer .entry-tags';
-	}
-	// Hide Post Navigation?
-	if ( false === $theme_options['post_navigation'] ) {
-		$elements[] = '.type-post .entry-footer .post-navigation';
-	}
-	// Return early if no elements are hidden.
-	if ( empty( $elements ) ) {
-		return;
-	}
-	// Create CSS.
-	$classes = implode( ', ', $elements );
-	$custom_css = $classes . ' { position: absolute; clip: rect(1px, 1px, 1px, 1px); width: 1px; height: 1px; overflow: hidden; }';
-	// Add Custom CSS.
-	wp_add_inline_style( 'worldstar-stylesheet', $custom_css );
-}
-add_filter( 'wp_enqueue_scripts', 'worldstar_hide_elements', 11 );
+
 /**
  * Change excerpt length for default posts
  *
@@ -136,3 +97,8 @@ function worldstar_wrapper_end() {
 }
 remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10 );
 add_action( 'woocommerce_after_main_content', 'worldstar_wrapper_end', 10 );
+
+
+
+remove_action( 'wp_head', 'feed_links_extra', 3 );
+remove_action( 'wp_head', 'feed_links', 2 );

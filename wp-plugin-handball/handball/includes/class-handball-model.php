@@ -406,6 +406,11 @@ class Ranking
         return $this->jsonObject->teamName;
     }
     
+    public function isOurTeam() : bool
+    {
+        return str_contains(strtolower($this->getTeamName()), "shooters");
+    }
+
     public function getTotalPoints()
     {
         return $this->jsonObject->totalPoints;

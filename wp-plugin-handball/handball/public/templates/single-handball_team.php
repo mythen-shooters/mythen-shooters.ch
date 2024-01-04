@@ -13,12 +13,39 @@ get_header(); ?>
 				<?
 				  $imgUrl = WpPostHelper::getFirstImageUrlInPost($post);   
 				?>
-				<!--
 				<img src="<?= $imgUrl ?>" />
--->
-
-        		<?= the_content() ?>
+				<div style="text-align:right">
+					<span id="teaminfolink">↓ Team-Informationen</span>
+				</div>
+				<div class="teaminfo">
+        			<?= the_content() ?>
+				</div>
         	</div>
+			<style>
+				.teaminfo {
+				  display: none;
+				}
+				.active {
+ 				   display: block;
+				}
+				#teaminfolink:hover {
+					text-decoration: underline;
+					cursor: pointer;
+				}
+				#teaminfolink {
+					font-weight:bold;
+				}
+				.teamimage {
+				  display: none;
+				}
+			</style>
+			<script type="text/javascript">
+			var teaminfo = document.getElementsByClassName("teaminfo")[0];
+			var button = document.getElementById("teaminfolink");
+			button.addEventListener("click", function() {
+				teaminfo.classList.toggle("active");			
+			});
+			</script>
         </article>
         <?php
 
@@ -45,14 +72,10 @@ get_header(); ?>
 			?>
 			<div class="content-column"  style="margin-top:15px">
     			<div class="entry-content clearfix">
-				
-					
 					<?php
 					    $matches = $playedGames;
 						include  "_gametable-played.php"
 					?>
-					
-				
     			</div>
 			</div>
 
@@ -103,21 +126,25 @@ get_header(); ?>
                     		</tr>
                     	<?php
                     	   foreach ($group->getRankings() as $ranking) {
+								$bold = "";
+								if ($ranking->isOurTeam()) {
+									$bold = "font-weight:bold;";
+								}
                     	       ?>
                     	       <tr>
-                    	       	<td class="td-ranking" style="text-align:left">
+                    	       	<td class="td-ranking" style="text-align:left;<?= $bold ?>">
 									<?= $ranking->getRank(); ?>
 									<img style="position:relative;top:5px;width:20px;" src="https://www.handball.ch/images/logo/<?= $ranking->getTeamId() ?>.png?fallbackType=club&fallbackId=<?= $ranking->getClubId() ?>&width=20&height=20&rmode=pad&format=png" />
 									<?= $ranking->getTeamName(); ?>
 								</td>
-								<td class="td-ranking"><?= $ranking->getTotalGames() ?></td>
-                    	       	<td class="td-ranking"><?= $ranking->getTotalPoints() ?></td>
-                    	       	<td class="td-ranking"><?= $ranking->getTotalWins(); ?></td>
-                    	       	<td class="td-ranking"><?= $ranking->getTotalDraws(); ?></td>
-                    	       	<td class="td-ranking"><?= $ranking->getTotalLoss(); ?></td>
-                    	       	<td class="td-ranking"><?= $ranking->getTotalScoresPlus(); ?></td>
-                    	       	<td class="td-ranking"><?= $ranking->getTotalScoresMinus(); ?></td>
-                    	       	<td class="td-ranking"><?= $ranking->getTotalScoresDiff(); ?></td>
+								<td class="td-ranking" style="<?= $bold ?>"><?= $ranking->getTotalGames() ?></td>
+                    	       	<td class="td-ranking" style="<?= $bold ?>"><?= $ranking->getTotalPoints() ?></td>
+                    	       	<td class="td-ranking" style="<?= $bold ?>"><?= $ranking->getTotalWins(); ?></td>
+                    	       	<td class="td-ranking" style="<?= $bold ?>"><?= $ranking->getTotalDraws(); ?></td>
+                    	       	<td class="td-ranking" style="<?= $bold ?>"><?= $ranking->getTotalLoss(); ?></td>
+                    	       	<td class="td-ranking" style="<?= $bold ?>"><?= $ranking->getTotalScoresPlus(); ?></td>
+                    	       	<td class="td-ranking" style="<?= $bold ?>"><?= $ranking->getTotalScoresMinus(); ?></td>
+                    	       	<td class="td-ranking" style="<?= $bold ?>"><?= $ranking->getTotalScoresDiff(); ?></td>
                     	       </tr>
                     	       <?php
                     	   }
@@ -130,11 +157,14 @@ get_header(); ?>
 			?>
 		</main>
 	</section>
-
 	
-
 	<section id="secondary" class="sidebar widget-area clearfix" role="complementary">
-		<h3>Aktuelle Spiele</h3>
+
+		<?
+		if (!empty($teamId)) {
+		?>
+			<h3 style="margin-bottom:10px;margin-top:8px;">Aktuelle Spiele</h3>
+
 		<?
 			$widget = new HandballFeaturedGameWidget();
 
@@ -146,6 +176,11 @@ get_header(); ?>
 			$widget->widget($args, $instance);
 		?>
 		<? include '_group.php'?>
+		<?
+		}
+		?>
+
+		
 	</section>
 
 <?php get_footer(); ?>

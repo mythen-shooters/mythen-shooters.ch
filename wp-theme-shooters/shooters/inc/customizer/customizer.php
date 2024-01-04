@@ -7,15 +7,11 @@
  
 // Load Customizer Helper Functions.
 require( get_template_directory() . '/inc/customizer/functions/custom-controls.php' );
-require( get_template_directory() . '/inc/customizer/functions/magazine-widget-area-control.php' );
 require( get_template_directory() . '/inc/customizer/functions/sanitize-functions.php' );
 require( get_template_directory() . '/inc/customizer/functions/callback-functions.php' );
 // Load Customizer Section Files.
 require( get_template_directory() . '/inc/customizer/sections/customizer-general.php' );
 require( get_template_directory() . '/inc/customizer/sections/customizer-post.php' );
-require( get_template_directory() . '/inc/customizer/sections/customizer-magazine.php' );
-require( get_template_directory() . '/inc/customizer/sections/customizer-featured.php' );
-require( get_template_directory() . '/inc/customizer/sections/customizer-upgrade.php' );
 /**
  * Registers Theme Options panel and sets up some WordPress core settings
  *

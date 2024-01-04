@@ -4,6 +4,18 @@
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<?php wp_head(); ?>
+
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/wp-content/themes/shooters/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/wp-content/themes/shooters/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/wp-content/themes/shooters/icons/favicon-16x16.png">
+	<link rel="manifest" href="/wp-content/themes/shooters/icons/site.webmanifest">
+	<link rel="mask-icon" href="/wp-content/themes/shooters/icons/safari-pinned-tab.svg" color="#ee9e34">
+	<link rel="shortcut icon" href="/wp-content/themes/shooters/icons/favicon.ico">
+	<meta name="msapplication-TileColor" content="#2b5797">
+	<meta name="msapplication-config" content="/wp-content/themes/shooters/icons/browserconfig.xml">
+	<meta name="theme-color" content="#ffffff">
+
 </head>
 <body <?php body_class(); ?>>
 	<div id="page" class="hfeed site">
@@ -14,7 +26,7 @@
 				<div class="header-main container clearfix">
 					<div id="logo" class="site-branding clearfix">
 						<a href="/" class="custom-logo-link" rel="home" aria-current="page">
-							<img width="180" src="/wp-content/themes/shooters/images/ms-logo-header.png" class="custom-logo" alt="HSG Mythen-Shooters" decoding="async" />					
+							<img src="/wp-content/themes/shooters/images/ms-logo-header.png" class="custom-logo" alt="HSG Mythen-Shooters" decoding="async" />					
 						</a>
 					</div><!-- .site-branding -->
 					<div class="header-widgets clearfix">

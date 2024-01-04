@@ -24,7 +24,7 @@ foreach ($matches as $match) {
      <td class="gametable-cell" style="width:120px;"><? echo $match->getScore(); ?> </td>
      
      <td class="gametable-cell" style="width:90px;text-align:right;">
-         <a href="<? echo $match->getLivetickerUrl() ?>">Liveticker</a>
+         <a href="<?= $match->getLivetickerUrl() ?>">Liveticker</a>
      </td>
      
      <td style="width:20px;padding:0px;text-align:center;margin:0px;padding-top:4px;"  class="gametable-cell">

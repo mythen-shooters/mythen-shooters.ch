@@ -105,39 +105,15 @@ function worldstar_scripts() {
 	$theme_version = wp_get_theme()->get( 'Version' );
 	// Register and Enqueue Stylesheet.
 	wp_enqueue_style( 'worldstar-stylesheet', get_stylesheet_uri(), array(), $theme_version );
-	// Register Genericons.
-	//wp_enqueue_style( 'genericons', get_template_directory_uri() . '/css/genericons/genericons.css', array(), '3.4.1' );
-	// Register and Enqueue HTML5shiv to support HTML5 elements in older IE versions.
-	wp_enqueue_script( 'html5shiv', get_template_directory_uri() . '/js/html5shiv.min.js', array(), '3.7.3' );
-	wp_script_add_data( 'html5shiv', 'conditional', 'lt IE 9' );
-	//wp_register_style('mikodacs-font', get_template_directory_uri() . '/fonts/Mikodacs.otf', array(), '1.0');
-    //wp_enqueue_style('mikodacs-font');
 	// Register and enqueue navigation.js.
 	wp_enqueue_script( 'worldstar-jquery-navigation', get_template_directory_uri() . '/js/navigation.js', array( 'jquery' ), '20160719' );
-	// Passing Parameters to Navigation.js Javascript.
-	wp_localize_script( 'worldstar-jquery-navigation', 'worldstar_menu_title', [esc_html__( 'Menu', 'worldstar' )] );
-	// Register and Enqueue Google Fonts.
-	//wp_enqueue_style( 'worldstar-default-fonts', worldstar_google_fonts_url(), array(), null );
 	// Register Comment Reply Script for Threaded Comments.
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'worldstar_scripts' );
-/**
- * Retrieve Font URL to register default Google Fonts
- */
-/*function worldstar_google_fonts_url() {
-	// Set default Fonts.
-	$font_families = array( 'Myriad Pro:400,400italic,700,700italic', 'Myriad Pro:400,400italic,700,700italic' );
-	// Build Fonts URL.
-	$query_args = array(
-		'family' => urlencode( implode( '|', $font_families ) ),
-		'subset' => urlencode( 'latin,latin-ext' ),
-	);
-	$fonts_url = add_query_arg( $query_args, '//fonts.googleapis.com/css' );
-	return apply_filters( 'worldstar_google_fonts_url', $fonts_url );
-}*/
+
 /**
  * Add custom sizes for featured images
  */
@@ -162,5 +138,4 @@ require get_template_directory() . '/inc/extras.php';
 require get_template_directory() . '/inc/template-tags.php';
 // Include support functions for Theme Addons.
 require get_template_directory() . '/inc/addons.php';
-// Include Magazine Functions.
-require get_template_directory() . '/inc/magazine.php';
+
