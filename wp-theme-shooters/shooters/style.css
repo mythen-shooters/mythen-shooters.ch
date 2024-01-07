@@ -436,8 +436,8 @@ table {
 }
 th,
 td {
-	padding: 0.3em 0.6em;
-	border: 1px solid #ddd;
+  padding: 0.3em 0em;
+  border: 1px solid #ddd;
 }
 
 a {
@@ -2194,3 +2194,4 @@ display: block;
 .one_third {
   padding-right: 15px;
  }
+ 

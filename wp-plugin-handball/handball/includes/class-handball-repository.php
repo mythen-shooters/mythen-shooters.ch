@@ -194,7 +194,7 @@ class HandballGalleryRepository
         });
         return $galleries;
     }
-    
+
     private function loadPostsOfTypeGallery()
     {
         $postQuery = new WP_Query([

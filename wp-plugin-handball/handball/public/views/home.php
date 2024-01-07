@@ -35,7 +35,7 @@ get_header();
 
 				$content = "";
              	if (!empty($imgUrl)) {
-                  $content .= "<div class='center-cropped' style=\"background-image: url('".$imgUrl."');\"></div>";
+                  $content .= "<a href='". get_permalink($post)."' class='center-cropped' style=\"display:block;background-image: url('".$imgUrl."');\"></a>";
                 }
 
 				$subText = '';
@@ -101,7 +101,7 @@ get_header();
 					}
 					?>
 
-					<div style="background-color:var(--orange);height:4px;margin-top:12px;margin-bottom:4px;"></div>
+					<div style="background-color:var(--orange);height:4px;margin-bottom:4px;"></div>
 
 					<style>
 						.news-card {
@@ -196,7 +196,7 @@ get_header();
 						<a style="display:block;cursor:pointer;color:white;margin-bottom:8px;background-color:var(--light-blue);" class="news-mobile-card" href='<?= get_permalink($post) ?>'>
 								<img src="<?= $imgUrl ?>" />
 							
-							<div style="padding:8px;">
+							<div style="padding:8px;border-bottom:3px solid var(--orange);">
 							<p style='margin:0px;font-size:18px;font-weight:bold;'>
 							  <?= esc_attr($post->post_title) ?>
 							</p>

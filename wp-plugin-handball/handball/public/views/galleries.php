@@ -1,11 +1,20 @@
-<?php get_header(); ?>
+<?= get_header() ?>
 
-<?php
+<?
 require_once (plugin_dir_path(__FILE__) . '../../includes/class-handball-repository.php');
-
 $repo = new HandballGalleryRepository();
 $galleries = $repo->findAll();
 ?>
+
+<style>
+.center-cropped {
+	display: inline-block;
+	width: 100%;
+	height: 200px;
+	background-position: center center;
+	background-size: cover;
+}
+</style>
 
 <div class="wrap">
 	<div id="primary" class="content-area">
@@ -13,8 +22,6 @@ $galleries = $repo->findAll();
     		<h1 class="entry-title">Galerie</h1>
     		<div class="entry-content clearfix">
     		<?php
-    		$classFirst = "content-column one_third";
-    		$classLast = "content-column one_third last_column";
     		$i = 0;
 			$open = false;
     		foreach ($galleries as $gallery) {
@@ -22,30 +29,33 @@ $galleries = $repo->findAll();
 					echo '<div style="overflow:hidden;">';
 					$open = true;
 				}
-			
-    		    if ($i % 3 == 2) {
-    		        echo "<div class='$classLast' style='padding-right:25px;'>";
-    		    } else {
-    		        echo "<div class='$classFirst' style='padding-right:25px;'>";					
-    		    }
 
-				echo '<span style="position:relative;top:35px;color:#aaa;font-size:12px;">'.$gallery->formattedStartDateLong().'</span>';
-    		    echo '<h2 style="position:relative;top:15px;font-size:18px;">' . esc_attr($gallery->getTitle()) . '</h2>';
+				?>
+				<a class='content-column one_third' style='margin-bottom:20px;display:block;cursor:pointer;' href='<?= $gallery->getUrl() ?>'>
+					<div style="background-color:var(--light-blue);">
+						<?			
+						$imgUrl = $gallery->getFirstImageUrlInPost();
+						if (!empty($imgUrl)) {
+							?>
+								<div class='center-cropped' style="display:block;background-image: url('<?= $imgUrl ?>');"></div>
+							<?
+						}
+						?>						
+						<div style="padding-left:8px;padding-right:8px;padding-top:8px;color:white;height:70px;overflow:hidden;font-weight:bold;">
+							<div style="font-size:14px;"><?= $gallery->formattedStartDateLong() ?></div>
+							<div><?= esc_attr($gallery->getTitle()) ?></div>
+						</div>
+					</div>
 				
-
-        		$imgUrl = $gallery->getFirstImageUrlInPost();
-        		if (!empty($imgUrl)) {
-        		  echo '<img style="height:225px;" src="' . $imgUrl .'" />';
-        		}
-        		?><br /><a href="<?= $gallery->getUrl() ?>" class="more-link">Album anschauen</a><?php
-                echo '</div>';
 				
-				if ($i % 3 == 2) {
-					echo '</div>';
-					$open = false;
-				}
-				
-				$i++; 
+				</a>
+					
+					<?
+					if ($i % 3 == 2) {
+						echo '</div>';
+						$open = false;
+					}
+					$i++; 
     		}
 			if ($open) { echo '</div>'; }
     		?>

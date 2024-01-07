@@ -62,10 +62,8 @@ class HandballPlugin
         $this->loader->add_action('init', $publicPlugin, 'registerPostTypeGallery');
         $this->loader->add_action('widgets_init', $publicPlugin, 'nextEventWidget');
         $this->loader->add_action('widgets_init', $publicPlugin, 'featuredGameWidget');
-        $this->loader->add_action('widgets_init', $publicPlugin, 'newestGalleryWidget');
         $this->loader->add_filter('single_template', $publicPlugin, 'addSingleTeamTemplate');
-        
-        // CUSTOM TEAM TEMPLATE!
+
         function handball_rewrite_rules(){
             add_rewrite_rule('^events$', 'index.php?events=upcoming', 'top');
             add_rewrite_rule('^galerie$', 'index.php?galerie=all', 'top');
@@ -91,29 +89,26 @@ class HandballPlugin
         function handball_template_include($template) {
             $queryVar = get_query_var('events');
             if ($queryVar == 'upcoming') {
-                $template = WP_PLUGIN_DIR . '/handball/public/views/events.php';
+                return WP_PLUGIN_DIR . '/handball/public/views/events.php';
             }
             $queryVar = get_query_var('galerie');
             if ($queryVar == 'all') {
-                $template = WP_PLUGIN_DIR . '/handball/public/views/galleries.php';
+                return WP_PLUGIN_DIR . '/handball/public/views/galleries.php';
             }
             if (handbalEndsWith($template, 'home.php')) {
-                $template = WP_PLUGIN_DIR . '/handball/public/views/home.php';
+                return WP_PLUGIN_DIR . '/handball/public/views/home.php';
             }
             return $template;
         }
         
-        
         add_filter('template_include', 'handball_template_include');
     }
-    
-    
-    
+
     private function getPluginName()
     {
         return $this->pluginName;
     }
-    
+
     private function getVersion()
     {
         return $this->version;

@@ -18,7 +18,7 @@ get_header(); ?>
           esc_html(get_the_date())
         );
         ?>
-        <div style="font-size:0.8em;border-top: 1px solid white;padding-top:5px;">
+        <div style="font-size:0.8em;border-top: 1px solid white;padding-top:5px;margin-bottom:20px;">
           <?= $time_string ?>, <?= esc_html(get_the_author()) ?>
         </div>
       </article>
@@ -27,10 +27,6 @@ get_header(); ?>
 </section>
 
 <section id="secondary" class="sidebar widget-area clearfix" role="complementary">
-<!--  
-<h3>Spiel</h3>
-      -->
-
   <?
   global $post;
   require_once(plugin_dir_path(__FILE__) . '../../includes/class-handball-repository.php');
@@ -42,16 +38,18 @@ get_header(); ?>
   $showEncounterWithLeague = false;
   ?>
 
-  <div class="entry-content clearfix" style="text-align:center;border-bottom:0px solid #eee;margin-bottom:5px;padding-bottom:10px;border:5px solid var(--orange);border-radius:10px;">
-    <div style="background-color:var(--orange);text-align:left;">
-      <h3 style="margin: 0px;padding:5px;"><?= $match->getLeagueLong() ?></h3>
+  <div class="entry-content clearfix" style="text-align:center;border-bottom:0px solid #eee;margin-bottom:5px;border:5px solid var(--orange);border-radius:10px;">
+    <div style="background-color:var(--orange);">
+      <h3 style="margin: 0px;padding:10px;"><?= $match->getLeagueLong() ?></h3>
     </div>
 
-    <div style="margin-top:15px;">
-      <img style="position:relative;right:15px;" src="<?= $match->getTeamAImageUrl(60) ?>" />
-      <span style="position:relative;bottom:20px;font-weight:normal;font-size:30px;">-</span>
-      <img style="position:relative;left:15px;" src="<?= $match->getTeamBImageUrl(60) ?>" />
-    </div>
+    <div style="padding-top:15px;padding-bottom:10px;">
+
+      <div style="padding:5px;margin-bottom:5px;">
+        <img style="position:relative;right:15px;" src="<?= $match->getTeamAImageUrl(60) ?>" />
+        <span style="position:relative;bottom:20px;font-weight:normal;font-size:30px;">-</span>
+        <img style="position:relative;left:15px;" src="<?= $match->getTeamBImageUrl(60) ?>" />
+      </div>
 
     <div style="padding-left:5px;padding-right:5px;">
       <span style="font-size:20px;">
@@ -70,6 +68,7 @@ get_header(); ?>
     <div style="border-top:0px solid var(--orange);margin-top:5px;">
       <a href="<?= $match->getLivetickerUrl() ?>">Liveticker</a>
     </div>
+  </div>
   </div>
 
   <?

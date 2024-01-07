@@ -9,18 +9,6 @@ get_header(); ?>
         	<header class="entry-header">
         		<?= the_title('<h1 class="entry-title">', '</h1>') ?>
         	</header>
-        	<div class="entry-content clearfix">
-				<?
-				  $imgUrl = WpPostHelper::getFirstImageUrlInPost($post);   
-				?>
-				<img src="<?= $imgUrl ?>" />
-				<div style="text-align:right">
-					<span id="teaminfolink">↓ Team-Informationen</span>
-				</div>
-				<div class="teaminfo">
-        			<?= the_content() ?>
-				</div>
-        	</div>
 			<style>
 				.teaminfo {
 				  display: none;
@@ -39,6 +27,18 @@ get_header(); ?>
 				  display: none;
 				}
 			</style>
+        	<div class="entry-content clearfix">
+				<?
+				  $imgUrl = WpPostHelper::getFirstImageUrlInPost($post);   
+				?>
+				<img src="<?= $imgUrl ?>" />
+				<div style="text-align:right">
+					<span id="teaminfolink">↓ Team-Informationen</span>
+				</div>
+				<div class="teaminfo">
+        			<?= the_content() ?>
+				</div>
+        	</div>			
 			<script type="text/javascript">
 			var teaminfo = document.getElementsByClassName("teaminfo")[0];
 			var button = document.getElementById("teaminfolink");

@@ -1,30 +1,21 @@
-<?php get_header(); ?>
+<?
+$gallery = new Gallery($post);
+?>
 
-	<section id="primary" class="content-area">
+<?= get_header() ?>
+	<section id="primary" class="fullwidth-content-area content-area">
 		<main id="main" class="site-main" role="main">
-
-		<?php while ( have_posts() ) : the_post(); ?>
-        <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-
-        	<header class="entry-header">
-
-        		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-
-        	</header><!-- .entry-header -->
-
-        	<div class="entry-content clearfix">
-
-        		<?php the_content(); ?>
-
-        	</div><!-- .entry-content -->
-
-        </article>
-
-        <?php endwhile; ?>
-
+			<?php while ( have_posts() ) : the_post(); ?>
+			<article id="post-<?= the_ID() ?>" <?= post_class() ?>>
+				<header class="entry-header">
+					<?= the_title('<h1 class="entry-title">', '</h1>') ?>
+				</header>
+				<?= $gallery->formattedStartDateLong() ?>
+				<div class="entry-content clearfix">
+					<?= the_content() ?>
+				</div>
+			</article>
+        	<?php endwhile; ?>
 		</main>
 	</section>
-
-	<?php get_sidebar(); ?>
-
-<?php get_footer(); ?>
+<?= get_footer() ?>

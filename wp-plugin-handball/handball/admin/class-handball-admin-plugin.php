@@ -186,6 +186,5 @@ class HandballAdminPlugin
                 include(plugin_dir_path(__FILE__) . 'views/team-overview.php');
             }
             );
-    }
-    
+    }    
 }

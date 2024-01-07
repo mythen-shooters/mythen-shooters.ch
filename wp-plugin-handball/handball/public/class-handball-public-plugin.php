@@ -83,13 +83,7 @@ class HandballPublicPlugin
     {
         require_once ('class-handball-featured-game-widget.php');
         register_widget('HandballFeaturedGameWidget');
-    }
-    
-    public function newestGalleryWidget()
-    {
-        require_once ('class-handball-newest-gallery-widget.php');
-        register_widget('HandballNewestGalleryWidget');
-    }
+    }    
     
     public function addSingleTeamTemplate($singleTemplate)
     {
@@ -99,6 +93,5 @@ class HandballPublicPlugin
             return $file;
         }
         return $singleTemplate;
-    }
-    
+    } 
 }

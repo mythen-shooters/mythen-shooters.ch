@@ -48,23 +48,23 @@ class DateTimeUi
     }
 
     private static function renderDay($key, $value) {
-        self::renderSelect(1, 31, $key, 'day', $value, 45);
+        self::renderSelect(1, 31, $key, 'day', $value, 50);
     }
 
     private static function renderMonth($key, $value) {
-        self::renderSelect(1, 12, $key, 'month', $value, 45);
+        self::renderSelect(1, 12, $key, 'month', $value, 50);
     }
 
     private static function renderYear($key, $value) {
-        self::renderSelect(2000, 2050, $key, 'year', $value, 60);
+        self::renderSelect(2000, 2050, $key, 'year', $value, 65);
     }
 
     private static function renderHour($key, $value) {
-        self::renderSelect(0, 23, $key, 'hour', $value, 45);
+        self::renderSelect(0, 23, $key, 'hour', $value, 50);
     }
 
     private static function renderMinute($key, $value) {
-        self::renderSelect(0, 59, $key, 'minute', $value, 45);
+        self::renderSelect(0, 59, $key, 'minute', $value, 50);
     }
 
     private static function renderSelect($from, $to, $key, $subkey, $value, $px) {
