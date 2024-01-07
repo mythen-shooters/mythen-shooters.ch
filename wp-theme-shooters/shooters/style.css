@@ -72,7 +72,7 @@ Text Domain: worldstar
 	/*background-origin: content-box;*/
 	width: 100%;
 	height: 100%;
-	background-size: cover;
+	background-size: containcover;
     /*background-repeat: no-repeat;*/
 	/*background-position: center;*/
 	/*height: 500px; 
@@ -94,12 +94,10 @@ Text Domain: worldstar
 	width: 100%;*/
 }
 #leftdiv {
-	width: calc((100% - 1200px) / 2);
 	height: auto;
 }
 
 #rightdiv {
-	width: calc((100% - 1200px) / 2);
 	height: auto;	
 }
 
