@@ -59,5 +59,7 @@
 		<?php worldstar_header_image(); ?>
 		<?php worldstar_breadcrumbs(); ?>
 
-		<div id="background">		
-			<div id="content" class="site-content container clearfix">
+		<div style="display:flex;margin-top:5px;margin-bottom:5px;">
+		<div id="leftdiv" class="background-image"></div>
+
+		<div id="content" class="site-content container" style="">

@@ -1,5 +1,6 @@
 	</div><!-- #content -->
-</div><!-- #background -->
+  <div id="rightdiv" class="background-image-right"></div>
+</div>
 
 <?php do_action( 'worldstar_before_footer' ); ?>
 	<div id="footer" class="footer-wrap">

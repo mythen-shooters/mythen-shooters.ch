@@ -63,18 +63,46 @@ Text Domain: worldstar
   --e-global-color-text: white;
 }
 
-#background {
+.background-image {
 	background-image: url("/wp-content/themes/shooters/images/MS_HG_1.png");
 	background-position: left bottom;
-    background-attachment: fixed;
-	background-repeat: repeat-x;
+    /*background-attachment: fixed;*/
+	background-repeat: no-repeat;
 	background-color: var(--orange);
-	/*background-size: cover;*/
+	/*background-origin: content-box;*/
+	width: 100%;
+	height: 100%;
+	background-size: cover;
     /*background-repeat: no-repeat;*/
 	/*background-position: center;*/
 	/*height: 500px; 
 	width: 100%;*/
 }
+.background-image-right {
+	background-image: url("/wp-content/themes/shooters/images/MS_HG_1.png");
+	background-position: right bottom;
+    /*background-attachment: fixed;*/
+	background-repeat: no-repeat;
+	background-color: var(--orange);
+	/*background-origin: content-box;*/
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+    /*background-repeat: no-repeat;*/
+	/*background-position: center;*/
+	/*height: 500px; 
+	width: 100%;*/
+}
+#leftdiv {
+	width: calc((100% - 1200px) / 2);
+	height: auto;
+}
+
+#rightdiv {
+	width: calc((100% - 1200px) / 2);
+	height: auto;	
+}
+
 .background-orange {
 	background: var(--orange);
 	/*background: rgba(242,128,0,0.9);*/
@@ -102,10 +130,10 @@ display: none;
 #content {
 	/*border-top: 5px solid var(--orange);
 	border-bottom: 5px solid var(--orange);
-	*/
 	
 	margin-top:5px;
 	margin-bottom:5px;
+	*/
 }
 html {
 	font-family: var(--text-font);
@@ -613,6 +641,9 @@ textarea {
 	float: right;
 	width: 28%;
 }
+
+
+
 /* No Sidebar & Centered Layout Template */
 .no-sidebar .content-area,
 .site-content .centered-content-area {
@@ -620,7 +651,7 @@ textarea {
 	padding: 0;
 	width: 100%;
 	max-width: 840px;
-	margin: 0 auto;
+	/*margin: 0 auto;*/
 }
 /* Fullwidth Template */
 .site-content .fullwidth-content-area {
