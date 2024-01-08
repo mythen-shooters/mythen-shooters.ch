@@ -65,9 +65,9 @@ Text Domain: worldstar
 
 .background-image {
 	background-image: url("/wp-content/themes/shooters/images/MS_HG_1.png");
-	background-position: left bottom;
+	background-position: right bottom;
     /*background-attachment: fixed;*/
-	background-repeat: no-repeat;
+	background-repeat: repeat-x;
 	background-color: var(--orange);
 	/*background-origin: content-box;*/
 	width: 100%;
@@ -80,9 +80,9 @@ Text Domain: worldstar
 }
 .background-image-right {
 	background-image: url("/wp-content/themes/shooters/images/MS_HG_1.png");
-	background-position: right bottom;
+	background-position: left bottom;
     /*background-attachment: fixed;*/
-	background-repeat: no-repeat;
+	background-repeat: repeat-x;
 	background-color: var(--orange);
 	/*background-origin: content-box;*/
 	width: 100%;
