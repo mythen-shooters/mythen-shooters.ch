@@ -645,6 +645,7 @@ textarea {
 	box-sizing: border-box;
 	padding-right: 2em;
 	width: 72%;
+	min-height: 800px;
 }
 .sidebar {
 	float: right;
