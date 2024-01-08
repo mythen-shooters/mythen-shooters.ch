@@ -41,7 +41,7 @@ $galleries = $repo->findAll();
 							<?
 						}
 						?>						
-						<div style="padding-left:8px;padding-right:8px;padding-top:8px;color:white;height:70px;overflow:hidden;font-weight:bold;">
+						<div style="padding-left:8px;padding-right:5px;padding-top:8px;color:white;height:70px;overflow:hidden;font-weight:bold;">
 							<div style="font-size:14px;"><?= $gallery->formattedStartDateLong() ?></div>
 							<div><?= esc_attr($gallery->getTitle()) ?></div>
 						</div>

@@ -8,7 +8,6 @@ $upComingEvents = $repo->findUpComingEvents();
 $pastEvents = $repo->findPastEvents();
 
 $classFirst = "content-column one_third";
-$classLast = "content-column one_third last_column";
 ?>
 
 <div class="wrap">
@@ -25,11 +24,7 @@ $classLast = "content-column one_third last_column";
 					$open = true;
 				}
 				
-				if ($i % 3 == 0 || $i % 3 == 1) {
-    		        $class = $classFirst;
-    		    } else {
-    		        $class = $classLasat;
-    		    }
+			
     		    include(WP_PLUGIN_DIR . '/handball/public/templates/_event-item.php');
 				
 				if ($i % 3 == 2) {
@@ -56,11 +51,7 @@ $classLast = "content-column one_third last_column";
 					$open = true;
 				}
 				
-				if ($i % 3 == 0 || $i % 3 == 1) {
-    		        $class = $classFirst;
-    		    } else {
-    		        $class = $classLasat;
-    		    }
+				
     		    include(WP_PLUGIN_DIR . '/handball/public/templates/_event-item.php');
 				
 				if ($i % 3 == 2) {
