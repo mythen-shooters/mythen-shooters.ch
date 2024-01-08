@@ -76,18 +76,6 @@ class HandballSettings
             },
             $settingsPage,
             $sectionId
-        );
-		
-		register_setting('general', 'HANDBALL_NUMBER_OF_EVENTS_TO_SHOW');
-        add_settings_field(
-            'handball_setting_number_of_events_to_show',
-            'Number of events to show',
-            function () {
-                $setting = get_option('HANDBALL_NUMBER_OF_EVENTS_TO_SHOW');
-                ?><input class="regular-text" type="text" name="HANDBALL_NUMBER_OF_EVENTS_TO_SHOW" value="<?= isset($setting) ? esc_attr($setting) : ''; ?>"><?php
-            },
-            $settingsPage,
-            $sectionId
-        );
+        );		
     }
 }

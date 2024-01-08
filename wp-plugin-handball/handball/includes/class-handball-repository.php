@@ -122,11 +122,9 @@ class HandballEventRepository
         $events = $this->loadPostsOfTypeEvent(function ($event) {
             return $event->isUpComing();
         });
-        
         usort($events, function (Event $a, Event $b) {
           return $a->getStartTimestamp() <=> $b->getStartTimestamp();
         });
-
         return $events;
     }
     

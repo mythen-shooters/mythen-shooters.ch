@@ -17,7 +17,7 @@ $galleries = $repo->findAll();
 </style>
 
 <div class="wrap">
-	<div id="primary" class="content-area">
+	<div id="primary" class="fullwidth-content-area content-area">
 		<main id="main" class="site-main" role="main">
     		<h1 class="entry-title">Galerie</h1>
     		<div class="entry-content clearfix">
@@ -46,8 +46,6 @@ $galleries = $repo->findAll();
 							<div><?= esc_attr($gallery->getTitle()) ?></div>
 						</div>
 					</div>
-				
-				
 				</a>
 					
 					<?
@@ -63,11 +61,4 @@ $galleries = $repo->findAll();
 		</main>
 	</div>
 </div>
-
-<?php get_footer(); ?>
-
-<style>
-#primary {
-    width: 100% !important;
-}
-</style>
+<?= get_footer() ?>

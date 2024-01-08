@@ -173,7 +173,7 @@ class Event
     
     public function isUpComing()
     {
-        return time() < $this->getEndTimestamp();
+        return (time()) < ($this->getEndTimestamp());
     }
     
     private function getEndTimestamp()

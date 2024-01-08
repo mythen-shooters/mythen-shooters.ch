@@ -10,10 +10,6 @@ class HandballNextEventWidget extends WP_Widget
         parent::__construct('handball_next_event_widget', 'Next Event');
         $this->eventRepo= new HandballEventRepository();
     }
-
-    private function getNumberOfEvents() {
-		return get_option('HANDBALL_NUMBER_OF_EVENTS_TO_SHOW', 3);
-	}
 	
     public function widget($args, $instance)
     {   
@@ -49,14 +45,17 @@ class HandballNextEventWidget extends WP_Widget
         </style>";
 
         $events = $this->eventRepo->findUpComingEvents();
-		$events = array_slice($events, 0, $this->getNumberOfEvents());
+        $eventsToShow = intval($instance['eventsToShow']);
+        if ($eventsToShow != -1) {
+		    $events = array_slice($events, 0, $eventsToShow);
+        }
         if (empty($events)) {
             echo 'Momentan stehen keine Events an.';
         } else {
             foreach ($events as $event) {
                 echo $this->renderEvent($event);
             }
-        }        
+        }
         echo $args['after_widget'];
     }
     
@@ -88,10 +87,14 @@ class HandballNextEventWidget extends WP_Widget
     public function form($instance)
     {
         $title = ! empty( $instance['title'] ) ? $instance['title'] : esc_html__( '', 'text_domain' );
+        $eventsToShow = ! empty( $instance['eventsToShow'] ) ? $instance['eventsToShow'] : esc_html__( '', 'text_domain' );        
         ?>
         <p>
         	<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Title:', 'text_domain' ); ?></label>
             <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+
+            <label for="<?php echo esc_attr($this->get_field_id('eventsToShow')); ?>"><?php esc_attr_e('Events to show:', 'text_domain'); ?></label>
+            <input class="widefat" id="<?php echo esc_attr($this->get_field_id('eventsToShow')); ?>" name="<?php echo esc_attr($this->get_field_name('eventsToShow')); ?>" type="text" value="<?php echo esc_attr($eventsToShow); ?>">
         </p>
         <?php
     }
@@ -100,6 +103,7 @@ class HandballNextEventWidget extends WP_Widget
     {
         $instance = [];
         $instance['title'] = ( !empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
+        $instance['eventsToShow'] = (!empty($new_instance['eventsToShow'])) ? strip_tags($new_instance['eventsToShow']) : '';
         return $instance;
     }
 }
