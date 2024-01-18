@@ -61,7 +61,7 @@ get_header();
 							  ".esc_attr($post->post_title) ."
 							</p>
 
-							<p style='margin:0px;font-size:18px;font-weight:bold;'>
+							<p style='margin:0px;font-size:16px;font-weight:bold;'>
 								".esc_attr($subText)."
 							</p>
 

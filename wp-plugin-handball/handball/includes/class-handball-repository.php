@@ -342,14 +342,14 @@ class HandballMatchRepository extends Repository
     
     public function findMatchesNextWeek(): array {
         $query = 'SELECT * FROM handball_match
-            WHERE game_datetime < (DATE_ADD(NOW(), INTERVAL 9 DAY)) AND game_datetime > (NOW())
+            WHERE game_datetime < (DATE_ADD(NOW(), INTERVAL 7 DAY)) AND game_datetime > (NOW())
             ORDER BY game_datetime ASC';
         return $this->findMultiple($query);
     }
     
     public function findMatchesLastWeek(): array {
         $query = 'SELECT * FROM handball_match
-            WHERE game_datetime > (DATE_SUB(NOW(), INTERVAL 9 DAY)) AND game_datetime < (NOW())
+            WHERE game_datetime > (DATE_SUB(NOW(), INTERVAL 7 DAY)) AND game_datetime < (NOW())
             ORDER BY game_datetime ASC';
         return $this->findMultiple($query);
     }

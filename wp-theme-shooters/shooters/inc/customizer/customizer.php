@@ -95,13 +95,6 @@ function worldstar_customize_preview_js() {
 }
 add_action( 'customize_preview_init', 'worldstar_customize_preview_js' );
 /**
- * Embed CSS styles for the theme options in the Customizer
- */
-function worldstar_customize_preview_css() {
-	wp_enqueue_style( 'worldstar-customizer-css', get_template_directory_uri() . '/css/customizer.css', array(), '20161214' );
-}
-add_action( 'customize_controls_print_styles', 'worldstar_customize_preview_css' );
-/**
  * Returns Theme Links
  */
 function worldstar_customize_theme_links() {
