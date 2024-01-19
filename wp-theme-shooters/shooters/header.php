@@ -19,51 +19,33 @@
 	<meta name="theme-color" content="#ffffff">
 	<style>
 			#content {
-	/*border-top: 5px solid var(--orange);
-	border-bottom: 5px solid var(--orange);
-	
-	margin-top:5px;
-	margin-bottom:5px;
-	*/
 	width:100%;
 }
 
 			.background-image {
 	background-image: url("/wp-content/themes/shooters/images/mountains.png");
 	background-position: right bottom;
-    /*background-attachment: fixed;*/
 	background-repeat: repeat-x;
 	background-color: var(--orange);
-	/*background-origin: content-box;*/
 	width: 100%;
 	height: 100%;
 	background-size: contain;
-    /*background-repeat: no-repeat;*/
-	/*background-position: center;*/
-	/*height: 500px; 
-	width: 100%;*/
 }
 .background-image-right {
 	background-image: url("/wp-content/themes/shooters/images/mountains.png");
 	background-position: left bottom;
-    /*background-attachment: fixed;*/
 	background-repeat: repeat-x;
 	background-color: var(--orange);
-	/*background-origin: content-box;*/
 	width: 100%;
 	height: 100%;
 	background-size: contain;
-    /*background-repeat: no-repeat;*/
-	/*background-position: center;*/
-	/*height: 500px; 
-	width: 100%;*/
 }
 #leftdiv {
 	height: auto;
 }
 
 #rightdiv {
-	height: auto;	
+	height: auto;
 }
 </style>
 </head>
