@@ -53,6 +53,8 @@ get_header();
 							$subText = $game->getLeagueLong() . ': ' . $game->getEncounter();
 						}
 					}
+				} else {
+					$excerpt = wp_kses_post(wp_trim_words($post->post_content, 35));
 				}
 			
 				$content .= "
