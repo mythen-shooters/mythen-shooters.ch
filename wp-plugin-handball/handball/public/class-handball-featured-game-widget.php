@@ -108,12 +108,13 @@ class HandballFeaturedGameWidget extends WP_Widget
             </div>
  
             <div>
-              <img style='position:relative;top:3px;margin-right:3px;' src='".$imgUrl."' />" 
+              <img style='position:relative;top:3px;margin-right:3px;' src='".$imgUrl."' />"
+                
                 . esc_attr($game->getOpponentTeamName())
-                . " "
-                . $game->getTeamAScoreFT()
-                . ':'
-                . $game->getTeamBScoreFT()           
+                //. " "
+                //. $game->getTeamAScoreFT()
+                //. ':'
+                //. $game->getTeamBScoreFT()           
                 . "
             </div>
 
