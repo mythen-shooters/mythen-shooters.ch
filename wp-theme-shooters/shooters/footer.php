@@ -29,7 +29,7 @@
 
 				<div class="content-column one_third last_column" style="text-align:center;margin-bottom:40px;">
 					<div style="margin-bottom:20px;height:106px;padding-top:40px;">
-            <a href="/hc-stv-schwyz" style="font-family:var(--header-font);font-size:50px;text-decoration:none;">
+            <a href="/hc-stv-schwyz" style="font-family:var(--header-font);font-size:40px;text-decoration:none;">
               HC STV Schwyz
               <!--<img style="max-height:100px;" src="/wp-content/themes/shooters/images/stv-schwyz-white.png" />-->
             </a>

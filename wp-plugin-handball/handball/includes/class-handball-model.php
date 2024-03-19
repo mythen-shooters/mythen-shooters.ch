@@ -563,11 +563,17 @@ class Game
 
     public function getTeamAImageUrl($size)
     {
+        if ($this->isTeamAOurTeam()) {
+           return "/wp-content/themes/shooters/images/mythen-shooters-logo.png";
+        }
         return "https://www.handball.ch/images/logo/".$this->getTeamAId().".png?fallbackType=club&fallbackId=".$this->getTeamAClubId()."&width=$size&height=$size&rmode=pad&format=png";
     }
 
     public function getTeamBImageUrl($size)
     {
+        if (!$this->isTeamAOurTeam()) {
+            return "/wp-content/themes/shooters/images/mythen-shooters-logo.png";
+         }
         return "https://www.handball.ch/images/logo/".$this->getTeamBId().".png?fallbackType=club&fallbackId=".$this->getTeamBClubId()."&width=$size&height=$size&rmode=pad&format=png";
     }
 

@@ -350,7 +350,7 @@ class HandballMatchRepository extends Repository
     public function findMatchesLastWeek(): array {
         $query = 'SELECT * FROM handball_match
             WHERE game_datetime > (DATE_SUB(NOW(), INTERVAL 7 DAY)) AND game_datetime < (NOW())
-            ORDER BY game_datetime ASC';
+            ORDER BY game_datetime DESC';
         return $this->findMultiple($query);
     }
 
