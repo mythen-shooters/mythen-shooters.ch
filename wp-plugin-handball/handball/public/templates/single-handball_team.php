@@ -26,6 +26,9 @@ get_header(); ?>
 				.teamimage {
 				  display: none;
 				}
+				.teamsponsor {
+				  margin-top: 5px;
+				}
 			</style>
         	<div class="entry-content clearfix">
 				<?
@@ -35,7 +38,7 @@ get_header(); ?>
 				<div style="text-align:right">
 					<span id="teaminfolink">↓ Team-Informationen</span>
 				</div>
-				<div>
+				<div class="teamsponsor">
 					<?php
 						$teamSponsor = get_post_meta($post->ID, 'handball_team_sponsor', true);
 						echo $teamSponsor;
