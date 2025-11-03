@@ -96,6 +96,12 @@ class HandballAdminPlugin
                 update_post_meta($postId, $teamIdKey, $id);
             }
         }
+
+        $teamSponsorKey = 'handball_team_sponsor';
+        if (array_key_exists($teamSponsorKey, $_POST)) {
+          $sponsor = $_POST[$teamSponsorKey];
+          update_post_meta($postId, $teamSponsorKey, $sponsor);
+        }
     }
     
     public function savePostMetaForEvent($postId)
