@@ -214,7 +214,7 @@ class Event
             IntlDateFormatter::NONE,
             'Europe/Zurich',
             IntlDateFormatter::GREGORIAN,
-            'MMMM'
+            'MMM'
         );
         return datefmt_format($fmt, $this->getStartTimestamp());
     }

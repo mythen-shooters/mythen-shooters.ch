@@ -56,6 +56,9 @@ class HandballNextEventWidget extends WP_Widget
                 echo $this->renderEvent($event);
             }
         }
+        echo '<div style="display: flex; justify-content: center; align-items: center;">';
+        echo '<a href="/events">Alle Events</a>';
+        echo '</div>'
         echo $args['after_widget'];
     }
     
@@ -75,7 +78,7 @@ class HandballNextEventWidget extends WP_Widget
             </div>
 
             <div class='next-event clearfix'>
-               <a class='next-event-link' style='".$hidden.";color:white;' href='".$event->getUrl()."'>></a>
+               <a class='next-event-link' style='".$hidden.";color:white;' href='".$event->getUrl()."'></a>
                <div style='padding-top:18px;padding-right:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>
                 ".esc_attr($event->getTitle())."
                 </div>
